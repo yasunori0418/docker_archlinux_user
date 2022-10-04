@@ -1,25 +1,24 @@
 FROM archlinux:latest
 
-MAINTAINER yasunori-kirin0418
+MAINTAINER yasunori0418
 
-LABEL description="自分用のarchlinux環境"
+LABEL description="Make user in archlinux."
 
 COPY ./mirrorlist /etc/pacman.d/mirrorlist
 COPY ./pacman.conf /etc/pacman.conf
 
 ENV TZ=Asia/Tokyo
 
-RUN set -x && \
-    pacman-key --init && \
+RUN pacman-key --init && \
     pacman-key --populate archlinux && \
     pacman -Syu --noconfirm && \
     pacman -S --noconfirm zsh git vim
 
 ARG UID=1000
 ARG GID=1000
-ARG USERNAME=yasunori
-ARG GROUPNAME=yasunori
-ARG PASSWD=yasunori
+ARG USERNAME=user
+ARG GROUPNAME=user
+ARG PASSWD=user
 ARG SHELL=/usr/bin/zsh
 
 RUN groupadd -g $GID $GROUPNAME && \
