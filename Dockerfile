@@ -22,12 +22,14 @@ ARG SHELL=/usr/bin/zsh
 RUN groupadd -g $GID $GROUPNAME && \
     useradd -m -s $SHELL -u $UID -g $GID -G $GROUPNAME $USERNAME && \
     echo $USERNAME:$PASSWD | chpasswd && \
-    echo "$USERNAME    ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
-    zsh -v >> /home/$USERNAME/.zshrc
+    echo "$USERNAME    ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 USER $UID
 WORKDIR /home/$USERNAME
 
 RUN xdg-user-dirs-update && \
+    zsh -v >> /home/$USERNAME/.zshrc && \
     git clone https://aur.archlinux.org/paru.git Downloads/paru && \
     cd Downloads/paru && makepkg --noconfirm -si
+
+CMD zsh
