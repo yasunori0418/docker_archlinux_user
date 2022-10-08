@@ -42,8 +42,5 @@ WORKDIR /home/${USER_NAME}
 # Structuring XDG Base Directory in user directory.
 RUN xdg-user-dirs-update
 
-# Mount aur_helper in user directory.
-COPY --chown=${UID}:${GID} ./aur_helper aur_helper
-
 # Execute zsh at the time of entering the container.
 CMD ${SHELL}
