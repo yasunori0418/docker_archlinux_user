@@ -1,0 +1,4 @@
+zsh
+git
+vim
+xdg-user-dirs
