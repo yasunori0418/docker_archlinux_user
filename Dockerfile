@@ -46,4 +46,4 @@ RUN xdg-user-dirs-update
 COPY --chown=${UID}:${GID} ./aur_helper aur_helper
 
 # Execute zsh at the time of entering the container.
-CMD ${SHELL_NAME}
+CMD ${SHELL}
