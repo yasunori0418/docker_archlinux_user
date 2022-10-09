@@ -10,10 +10,10 @@
 デフォルトでは`xdg-user-dirs`だけになっていますが、以下のようにパッケージ名を追加すれば、更にパッケージを追加することが可能です。
 
 ```config/pkglist.txt
-  xdg-user-dirs
-+ zsh
-+ git
-+ vim
+xdg-user-dirs
+zsh
+git
+vim
 ```
 
 ### Change make user configs

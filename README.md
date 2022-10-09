@@ -10,10 +10,10 @@ Read `config/pkglist.txt` and add packages when building the image.
 By default, it is just `xdg-user-dirs`, but you can add more packages by adding the package name as follows.
 
 ```config/pkglist.txt
-  xdg-user-dirs
-+ zsh
-+ git
-+ vim
+xdg-user-dirs
+zsh
+git
+vim
 ```
 
 ### Change make user configs
