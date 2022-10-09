@@ -6,16 +6,15 @@ LABEL maintainer='yasunori0418' \
                    And configure the user directory with the structure of the XDG Base Directory."
 
 # Archlinux package manager configs mount in container.
-COPY ./mirrorlist /etc/pacman.d/mirrorlist
-COPY ./pacman.conf /etc/pacman.conf
-COPY ./makepkg.conf /etc/makepkg.conf
+COPY ./config/mirrorlist    /etc/pacman.d/mirrorlist
+COPY ./config/pacman.conf   /etc/pacman.conf
+COPY ./config/makepkg.conf  /etc/makepkg.conf
 
 # You can specify a list of non-aur packages in text format.
 # Adding package list.
-COPY ./pkglist.txt /etc/pacman.d/pkglist.txt
+COPY ./config/pkglist.txt   /etc/pacman.d/pkglist.txt
 
 # The pacman-key and pacman -Syu commands must be run for the initial time with archlinux images.
-# And adding packages of git, zsh, vim and xdg-user-dirs.
 RUN pacman-key --init && \
     pacman-key --populate archlinux && \
     pacman -Syu --noconfirm && \
@@ -42,5 +41,5 @@ WORKDIR /home/${USER_NAME}
 # Structuring XDG Base Directory in user directory.
 RUN xdg-user-dirs-update
 
-# Execute zsh at the time of entering the container.
+# Execute ${SHELL} in the container.
 CMD ${SHELL}
