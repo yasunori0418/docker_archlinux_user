@@ -22,10 +22,10 @@ RUN pacman-key --init && \
 
 # Arguments for user making.
 ARG UID=1000
-ARG GID=1000
+ARG GID=${UID}
 ARG USER_NAME=user
-ARG GROUP_NAME=user
-ARG PASSWD=user
+ARG GROUP_NAME=${USER_NAME}
+ARG PASSWD=${USER_NAME}
 ARG SHELL_NAME=bash
 ARG SHELL=/usr/bin/${SHELL_NAME}
 
