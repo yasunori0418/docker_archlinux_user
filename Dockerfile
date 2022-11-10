@@ -40,3 +40,5 @@ WORKDIR /home/${USER_NAME}
 
 # Structuring XDG Base Directory in user directory.
 RUN xdg-user-dirs-update
+
+CMD ${SHELL}
