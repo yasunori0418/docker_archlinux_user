@@ -9,3 +9,5 @@ services:
         - USER_NAME=yasunori
         - SHELL_NAME=zsh
     tty: true
+    environment:
+      TERM: xterm-256color
