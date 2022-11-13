@@ -25,4 +25,4 @@ docker image build -t archlinux_user --build-args=SHELL_NAME=zsh .
 ```
 
 Also, the default username is `user`, but this can also be changed by specifying `--build-args`.
-If you check `Dockerfile#L23-35` for details, that area is the setting related to user creation.
+If you check `Dockerfile#L18-25` for details, that area is the setting related to user creation.
