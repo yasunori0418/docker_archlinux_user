@@ -5,11 +5,6 @@ LABEL maintainer='yasunori0418' \
                    You can add packages specified in pkglist. \
                    And configure the user directory with the structure of the XDG Base Directory."
 
-# Archlinux package manager configs mount in container.
-COPY ./config/mirrorlist    /etc/pacman.d/mirrorlist
-COPY ./config/pacman.conf   /etc/pacman.conf
-COPY ./config/makepkg.conf  /etc/makepkg.conf
-
 # You can specify a list of non-aur packages in text format.
 # Adding package list.
 COPY ./config/pkglist.txt   /etc/pacman.d/pkglist.txt
