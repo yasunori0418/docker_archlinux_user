@@ -6,8 +6,8 @@ services:
       context: .
       dockerfile: ./Dockerfile
       args:
-        - USER_NAME=yasunori
-        - SHELL_NAME=zsh
+        - USER_NAME=user
+        - SHELL_NAME=bash
     tty: true
     environment:
       TERM: xterm-256color
