@@ -1,18 +1,13 @@
 FROM archlinux:base-devel
 
-LABEL maintainer='yasunori0418' \
-      description="Create a user in archlinux:base-devel. \
+MAINTAINER yasunori0418
+LABEL description="Create a user in archlinux:base-devel. \
                    You can add packages specified in pkglist. \
                    And configure the user directory with the structure of the XDG Base Directory."
 
-# Archlinux package manager configs mount in container.
-COPY ./config/mirrorlist    /etc/pacman.d/mirrorlist
-COPY ./config/pacman.conf   /etc/pacman.conf
-COPY ./config/makepkg.conf  /etc/makepkg.conf
-
 # You can specify a list of non-aur packages in text format.
 # Adding package list.
-COPY ./config/pkglist.txt   /etc/pacman.d/pkglist.txt
+COPY ./pkglist.txt   /etc/pacman.d/pkglist.txt
 
 # The pacman-key and pacman -Syu commands must be run for the initial time with archlinux images.
 RUN pacman-key --init && \
@@ -22,10 +17,10 @@ RUN pacman-key --init && \
 
 # Arguments for user making.
 ARG UID=1000
-ARG GID=${UID}
+ARG GID=1000
 ARG USER_NAME=user
-ARG GROUP_NAME=${USER_NAME}
-ARG PASSWD=${USER_NAME}
+ARG GROUP_NAME=user
+ARG PASSWD=user
 ARG SHELL_NAME=bash
 ARG SHELL=/usr/bin/${SHELL_NAME}
 
