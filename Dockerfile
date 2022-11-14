@@ -30,7 +30,7 @@ RUN groupadd -g ${GID} ${GROUP_NAME} && \
     echo "${USER_NAME}    ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Change the user used from root to $USER_NAME.
-USER ${UID}:${GID}
+USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
 
 # Structuring XDG Base Directory in user directory.
