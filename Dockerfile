@@ -36,5 +36,8 @@ RUN groupadd -g ${GID} ${GROUP_NAME} && \
 USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
 
+# Change the value of the environment variable $SHELL to the created user shell.
+ENV SHELL=${SHELL}
+
 # Structuring XDG Base Directory in user directory.
 RUN xdg-user-dirs-update
