@@ -5,15 +5,18 @@ LABEL description="Create a user in archlinux:base-devel. \
                    You can add packages specified in pkglist. \
                    And configure the user directory with the structure of the XDG Base Directory."
 
+# Load package list file with variable.
+ARG PKGLIST_FILE=./pkglist.txt
+
 # You can specify a list of non-aur packages in text format.
 # Adding package list.
-COPY ./pkglist.txt   /etc/pacman.d/pkglist.txt
+COPY ${PKGLIST_FILE}   /etc/pacman.d/${PKGLIST_FILE}
 
 # The pacman-key and pacman -Syu commands must be run for the initial time with archlinux images.
 RUN pacman-key --init && \
     pacman-key --populate archlinux && \
     pacman -Syu --noconfirm && \
-    pacman -S --needed --noconfirm - < /etc/pacman.d/pkglist.txt
+    pacman -S --needed --noconfirm - < /etc/pacman.d/${PKGLIST_FILE}
 
 # Arguments for user making.
 ARG UID=1000
@@ -32,6 +35,9 @@ RUN groupadd -g ${GID} ${GROUP_NAME} && \
 # Change the user used from root to $USER_NAME.
 USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
+
+# Change the value of the environment variable $SHELL to the created user shell.
+ENV SHELL=${SHELL}
 
 # Structuring XDG Base Directory in user directory.
 RUN xdg-user-dirs-update
